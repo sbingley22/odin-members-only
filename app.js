@@ -10,6 +10,8 @@ const expressLayouts = require('express-ejs-layouts')
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose")
+const bcrypt = require("bcryptjs")
+const User = require('./models/user')
 
 //Connect to mongo DB
 const mongoDb = process.env.mongoUrl
@@ -30,9 +32,45 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 
+passport.use(
+  new LocalStrategy(async (username, password, done) => {
+    try {
+      const user = await User.findOne({ username: username });
+      if (!user) {
+        return done(null, false, { message: "Incorrect username" });
+      };
+
+      const isMatch = await bcrypt.compare(password, user.password)
+      if (!isMatch) {
+        return done(null, false, { message: "Incorrect password" });
+      };
+      return done(null, user);
+    } catch(err) {
+      return done(err);
+    };
+  })
+);
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch(err) {
+    done(err);
+  };
+});
+
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
 
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -54,7 +92,9 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', {
+    title: "Error"
+  });
 });
 
 module.exports = app;

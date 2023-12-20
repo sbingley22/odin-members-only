@@ -1,2 +1,8 @@
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
+
+<div class="d-flex flex-column align-items-center">
+  <h3 class="p-3"><%= title %></h3>
+  <% if (user) { %>
+    <p>Welcome <%= user.firstname %></p>
+  <% } %>
+  <p>Messages go here</p>
+</div>
