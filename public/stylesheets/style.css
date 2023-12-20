@@ -1,4 +1,9 @@
+*{
+  color: rgb(214, 203, 181);
+}
+
 body {
+  background-color: rgb(33,33,33);
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }

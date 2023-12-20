@@ -5,14 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 require('dotenv').config()
-console.log(process.env)
 const session = require("express-session");
+const expressLayouts = require('express-ejs-layouts')
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose")
 
 //Connect to mongo DB
-const mongoDB = process.env.mongoUrl
+const mongoDb = process.env.mongoUrl
 mongoose.connect(mongoDb);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
@@ -23,6 +23,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 // view engine setup
+app.use(expressLayouts)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
