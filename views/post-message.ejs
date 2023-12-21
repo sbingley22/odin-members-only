@@ -1,0 +1,35 @@
+<div class="container mt-5">
+    <% if (!user.member) { %>
+      <p>Welcome <%= user.firstname %></p>
+      <p>To post messages you must prove you are a true member by entering a special membership password.</p>
+      <p>
+        If you are very smart you can guess it. Its the codename number of a famous hitman.
+      </p>
+      <form action="/make-member" method="POST">
+
+        <!-- Password Input -->
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" name="password" type="password">
+            </div>
+
+        <!-- Post Button -->
+        <button class="btn btn-primary">Submit</button>
+
+      </form>
+    <% } else { %>
+      <form action="" method="POST">
+
+          <!-- Message Input -->
+          <div class="form-group">
+            <label for="message">Message: </label>
+            <textarea class="form-control" name="message">
+            </textarea>
+          </div>
+
+          <!-- Post Button -->
+          <button class="btn btn-primary">Post</button>
+
+      </form>
+    <% } %>
+</div>

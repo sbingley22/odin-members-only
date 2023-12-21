@@ -4,7 +4,7 @@
         <!-- Username Input -->
         <div class="form-group">
         <label for="username">Email</label>
-        <input class="form-control" name="username" placeholder="JohnDoe@gmail.com" type="email">
+        <input class="form-control" name="username" placeholder="JohnDoe@gmail.com" type="email" value="<%= userInfo ? userInfo.username : '' %>">
         </div>
 
         <!-- Password Input -->
@@ -13,20 +13,36 @@
         <input class="form-control" name="password" type="password">
         </div>
 
+        <!-- Confirm Password Input -->
+        <div class="form-group">
+        <label for="confirmpassword">Confirm Password</label>
+        <input class="form-control" name="confirmpassword" type="password">
+        </div>
+
         <!-- First Name Input -->
         <div class="form-group">
         <label for="firstname">First Name</label>
-        <input class="form-control" name="firstname" placeholder="John" type="text">
+        <input class="form-control" name="firstname" placeholder="John" type="text" value="<%= userInfo ? userInfo.firstname : '' %>">
         </div>
 
         <!-- Last Name Input -->
         <div class="form-group">
         <label for="lastname">Last Name</label>
-        <input class="form-control" name="lastname" placeholder="Doe" type="text">
+        <input class="form-control" name="lastname" placeholder="Doe" type="text" value="<%= userInfo ? userInfo.lastname : '' %>">
         </div>
 
         <!-- Sign Up Button -->
         <button class="btn btn-primary">Sign Up</button>
 
     </form>
+</div>
+
+<div class="p-3">
+    <% if (errors) { %>
+        <ul>
+            <% errors.map( (error) => { %>
+                <li><%= error.msg %></li>
+            <% }) %>
+        </ul>
+    <% } %>
 </div>

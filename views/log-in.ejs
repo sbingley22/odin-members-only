@@ -17,4 +17,12 @@
         <button class="btn btn-primary">Log in</button>
 
     </form>
+
+    <div class="p-3">
+        <% if (errorMessage.length > 0) { %>
+            <div class="error-message">
+                <%= errorMessage %>
+            </div>
+        <% } %>
+    </div>
 </div>

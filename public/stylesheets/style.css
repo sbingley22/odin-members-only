@@ -2,12 +2,38 @@
   color: rgb(214, 203, 181);
 }
 
+html {
+  background-color: rgb(11, 11, 11);
+}
+
 body {
-  background-color: rgb(33,33,33);
+  background-color: rgb(11,11,11);
   padding: 5px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 100vh;
 }
 
 a {
   color: #00B7FF;
+}
+
+.mycard {
+  background-color: rgb(21, 21, 21);
+  width: 100%;
+}
+
+.mycard p {
+  font-size: x-large;
+}
+.mycard h5 {
+  font-size: small;
+}
+.mycard h6 {
+  font-size: smaller;
+}
+
+.body-main {
+  background-color: rgb(11, 11, 11);
 }

@@ -1,8 +1,18 @@
-
 <div class="d-flex flex-column align-items-center">
   <h3 class="p-3"><%= title %></h3>
-  <% if (user) { %>
-    <p>Welcome <%= user.firstname %></p>
-  <% } %>
-  <p>Messages go here</p>
+    <% messages.map( message => { %>
+      <div class="mycard card p-3 m-1">
+        <h5 class="p-1">
+          <% if (user && user.member) { %>
+            <%= message.user %>
+          <% } %>
+        </h5>
+        <p>
+          <%= message.text %>
+        </p>
+        <h6 class="text-right">
+          <%= message.date.toLocaleDateString() %>
+        </h6>
+      </div>
+    <% }) %>
 </div>
