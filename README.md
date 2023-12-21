@@ -3,3 +3,4 @@ A site for members only requiring a special password. Members can post messages 
 Uses mongoDB, express, bcrypt, passport, ejs
 
 Live Link:
+https://sbingley22-members-only.adaptable.app/
